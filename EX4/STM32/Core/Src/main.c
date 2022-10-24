@@ -65,21 +65,21 @@ static void MX_GPIO_Init(void);
   */
 void displayFirstLedCouple(enum LedState state_1){
 	switch(state_1){
-	 case RED_STATE:
-		 HAL_GPIO_WritePin( FIRST_COUPLE_GREEN_GPIO_Port , FIRST_COUPLE_GREEN_Pin , 1) ;
-	     HAL_GPIO_WritePin( FIRST_COUPLE_YELLOW_GPIO_Port , FIRST_COUPLE_YELLOW_Pin , 1 ) ;
-	     HAL_GPIO_WritePin( FIRST_COUPLE_RED_GPIO_Port , FIRST_COUPLE_RED_Pin , 0 ) ;
-		 break;
-	 case YELLOW_STATE:
-		 HAL_GPIO_WritePin( FIRST_COUPLE_GREEN_GPIO_Port , FIRST_COUPLE_GREEN_Pin , 1) ;
-	     HAL_GPIO_WritePin( FIRST_COUPLE_YELLOW_GPIO_Port , FIRST_COUPLE_YELLOW_Pin , 0 ) ;
-	     HAL_GPIO_WritePin( FIRST_COUPLE_RED_GPIO_Port , FIRST_COUPLE_RED_Pin , 1 ) ;
-	     break;
-	 case GREEN_STATE:
-		 HAL_GPIO_WritePin( FIRST_COUPLE_GREEN_GPIO_Port , FIRST_COUPLE_GREEN_Pin , 0) ;
-		 HAL_GPIO_WritePin( FIRST_COUPLE_YELLOW_GPIO_Port , FIRST_COUPLE_YELLOW_Pin , 1 ) ;
-		 HAL_GPIO_WritePin( FIRST_COUPLE_RED_GPIO_Port , FIRST_COUPLE_RED_Pin , 1 ) ;
-		 break;
+	 	 case RED_STATE:
+			 HAL_GPIO_WritePin( FIRST_COUPLE_GREEN_GPIO_Port , FIRST_COUPLE_GREEN_Pin , 1) ;
+			 HAL_GPIO_WritePin( FIRST_COUPLE_YELLOW_GPIO_Port , FIRST_COUPLE_YELLOW_Pin , 1 ) ;
+			 HAL_GPIO_WritePin( FIRST_COUPLE_RED_GPIO_Port , FIRST_COUPLE_RED_Pin , 0 ) ;
+			 break;
+		 case YELLOW_STATE:
+			 HAL_GPIO_WritePin( FIRST_COUPLE_GREEN_GPIO_Port , FIRST_COUPLE_GREEN_Pin , 1) ;
+			 HAL_GPIO_WritePin( FIRST_COUPLE_YELLOW_GPIO_Port , FIRST_COUPLE_YELLOW_Pin , 0 ) ;
+			 HAL_GPIO_WritePin( FIRST_COUPLE_RED_GPIO_Port , FIRST_COUPLE_RED_Pin , 1 ) ;
+			 break;
+		 case GREEN_STATE:
+			 HAL_GPIO_WritePin( FIRST_COUPLE_GREEN_GPIO_Port , FIRST_COUPLE_GREEN_Pin , 0) ;
+			 HAL_GPIO_WritePin( FIRST_COUPLE_YELLOW_GPIO_Port , FIRST_COUPLE_YELLOW_Pin , 1 ) ;
+			 HAL_GPIO_WritePin( FIRST_COUPLE_RED_GPIO_Port , FIRST_COUPLE_RED_Pin , 1 ) ;
+			 break;
 	 default:
 		 break;
 	}
@@ -91,17 +91,17 @@ void displaySecondLedCouple(enum LedState state_2){
 			HAL_GPIO_WritePin( SECOND_COUPLE_GREEN_GPIO_Port , SECOND_COUPLE_GREEN_Pin , 1) ;
 			HAL_GPIO_WritePin( SECOND_COUPLE_YELLOW_GPIO_Port , SECOND_COUPLE_YELLOW_Pin , 1 ) ;
 			HAL_GPIO_WritePin( SECOND_COUPLE_RED_GPIO_Port , SECOND_COUPLE_RED_Pin , 0 ) ;
-		  break;
+			break;
 		case YELLOW_STATE:
 			HAL_GPIO_WritePin( SECOND_COUPLE_GREEN_GPIO_Port , SECOND_COUPLE_GREEN_Pin , 1) ;
 			HAL_GPIO_WritePin( SECOND_COUPLE_YELLOW_GPIO_Port , SECOND_COUPLE_YELLOW_Pin , 0 ) ;
 			HAL_GPIO_WritePin( SECOND_COUPLE_RED_GPIO_Port , SECOND_COUPLE_RED_Pin , 1 ) ;
 			break;
 		case GREEN_STATE:
-			  HAL_GPIO_WritePin( SECOND_COUPLE_GREEN_GPIO_Port , SECOND_COUPLE_GREEN_Pin , 0) ;
-			  HAL_GPIO_WritePin( SECOND_COUPLE_YELLOW_GPIO_Port , SECOND_COUPLE_YELLOW_Pin , 1 ) ;
-			  HAL_GPIO_WritePin( SECOND_COUPLE_RED_GPIO_Port , SECOND_COUPLE_RED_Pin , 1 ) ;
-			  break;
+		    HAL_GPIO_WritePin( SECOND_COUPLE_GREEN_GPIO_Port , SECOND_COUPLE_GREEN_Pin , 0) ;
+		    HAL_GPIO_WritePin( SECOND_COUPLE_YELLOW_GPIO_Port , SECOND_COUPLE_YELLOW_Pin , 1 ) ;
+		    HAL_GPIO_WritePin( SECOND_COUPLE_RED_GPIO_Port , SECOND_COUPLE_RED_Pin , 1 ) ;
+		    break;
 		default:
 		  break;
    }
