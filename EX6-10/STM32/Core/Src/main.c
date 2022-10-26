@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <math.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -34,6 +35,8 @@ enum LedState { RED_STATE , YELLOW_STATE , GREEN_STATE } ;
 /* USER CODE BEGIN PD */
 #define LEDS_NUMBER 12
 #define ONE_SECOND_DELAY 1000
+#define LAST_LEDS_ARR_INDEX 11
+#define LED_STATE_LEVEL 5
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -64,10 +67,41 @@ static void MX_GPIO_Init(void);
   * @retval int
   */
 int leds_array[LEDS_NUMBER] = {LED_A_Pin,LED_B_Pin,LED_C_Pin,LED_D_Pin,LED_E_Pin,LED_F_Pin,LED_G_Pin,LED_H_Pin,LED_I_Pin,LED_J_Pin,LED_K_Pin,LED_L_Pin};
-void offAllLeds(){
+void clearAllClock(){
 	for(int i = 0; i < LEDS_NUMBER; i++){
 		HAL_GPIO_WritePin(GPIOA, leds_array[i], GPIO_PIN_SET);
 	}
+}
+
+void setNumberOnClock(int num){
+	HAL_GPIO_WritePin(GPIOA, leds_array[num], GPIO_PIN_RESET);
+}
+
+void clearNumberOnClock(int num){
+	HAL_GPIO_WritePin(GPIOA, leds_array[num], GPIO_PIN_SET);
+}
+
+void formatClock(int* second, int* min, int* hour){
+   //Format numbers
+   if(*second == 59){
+	   *second = 0;
+	   clearNumberOnClock(LAST_LEDS_ARR_INDEX);
+	   if(*min == 59){
+		   *min = 0;
+		   clearNumberOnClock(*hour%LEDS_NUMBER);
+		   (*hour)++;
+	   }else (*min)++;
+   }else (*second)++;
+
+   if(*hour >= 24) *hour = 0;
+
+   //Format display
+   if(*second != 0 && *second % LED_STATE_LEVEL == 0){
+	   clearNumberOnClock(floor(*second/LED_STATE_LEVEL)-1);
+   }
+   if(*min != 0 && *min % LED_STATE_LEVEL == 0){
+		   clearNumberOnClock(floor(*min/LED_STATE_LEVEL)-1);
+	   }
 }
 int main(void)
 {
@@ -102,12 +136,46 @@ int main(void)
 
 
   int led_index = 0;
-  offAllLeds();
+  clearAllClock();
+
+  //For Ex10
+  int hour = 1;
+  int minute = 59;
+  int second = 50;
   while (1)
   {
-	  HAL_GPIO_WritePin(GPIOA, leds_array[led_index], GPIO_PIN_RESET);
-	  led_index = (led_index + 1);
-	  HAL_Delay(ONE_SECOND_DELAY);
+	  /*
+	   	   Testing Ex6:
+	   	   HAL_GPIO_WritePin(GPIOA, leds_array[led_index], GPIO_PIN_RESET);
+		   led_index = (led_index + 1)
+		   HAL_Delay(ONE_SECOND_DELAY);
+	  */
+
+	  /*
+	 	   Testing Ex8:
+	 	   setNumberOnClock(4);
+	 	   HAL_Delay(ONE_SECOND_DELAY);
+	  */
+
+
+	  /*
+	   	   Testing Ex9:
+		   setNumberOnClock(4);
+		   HAL_Delay(ONE_SECOND_DELAY);
+		   clearNumberOnClock(4);
+		   HAL_Delay(ONE_SECOND_DELAY);
+	  */
+
+	  /*
+	      Testing Ex10:
+		  setNumberOnClock(hour % LEDS_NUMBER);
+		  setNumberOnClock((int)floor(minute / LED_STATE_LEVEL));
+		  setNumberOnClock((int)floor(second / LED_STATE_LEVEL));
+
+		  HAL_Delay(ONE_SECOND_DELAY);
+		  formatClock(&second, &minute, &hour);
+	   */
+
 
     /* USER CODE END WHILE */
 
